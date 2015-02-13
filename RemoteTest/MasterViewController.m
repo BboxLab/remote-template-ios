@@ -8,7 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-
+#import "Constant.h"
 @interface MasterViewController () {
     NSMutableArray *_objects;
 }
@@ -38,7 +38,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:@"bboxIp"]];
+    self.bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:BBoxIp]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,6 +61,7 @@
                 [self insertNewObject:app];
             }
         } else {
+            NSLog(@"%@",error);
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                               message:[error localizedDescription]
                                                              delegate:nil
@@ -98,7 +99,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Cell_Identifier forIndexPath:indexPath];
     
     Application *object = _objects[indexPath.row];
     cell.textLabel.text = object.appName;
@@ -121,21 +122,7 @@
     }
 }
 
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
 
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

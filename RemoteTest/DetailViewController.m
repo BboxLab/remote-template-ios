@@ -7,7 +7,7 @@
 //
 
 #import "DetailViewController.h"
-
+#import "Constant.h"
 @interface DetailViewController ()
 - (void)configureView;
 @end
@@ -60,7 +60,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:@"bboxIp"]];
+    self.bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:BBoxIp]];
         [self configureView];
 }
 

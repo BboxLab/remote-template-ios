@@ -7,7 +7,7 @@
 //
 
 #import "NotificationTableViewController.h"
-
+#import "Constant.h"
 @interface NotificationTableViewController ()
 
 @end
@@ -30,31 +30,44 @@ Bbox * bbox;
 {
     [super viewDidLoad];
     
-    bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:@"bboxIp"]];
+    bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:BBoxIp]];
     
-    [bbox.applicationsManager getMyAppIdWithMyAppName:@"BboxControler" andThenCall:^(BOOL success, NSString *appId, NSError *error) {
+    [bbox.applicationsManager getMyAppIdWithMyAppName:BBoxControler andThenCall:^(BOOL success, NSString *appId, NSError *error) {
         if (success) {
             self.manager = [[NotificationsManager alloc] initWithBboxRestClient:bbox.bboxRestClient andAppId:appId];
             
-            [self.manager subscribeToNotification:@"Application" thenCall:^(BOOL success, NSError *error) {
+            [self.manager subscribeToNotification:Application_ApiKey thenCall:^(BOOL success, NSError *error) {
                 if (success) {
-                    NSLog(@"Subscribe OK");
-                    [self.manager connectWebSocket];
-                    [self.manager whenANotificationOccurCall:^(NSDictionary *notification) {
-                        NSLog(@"Notifs !");
-                        NSLog(@"%@", [notification description]);
-
-                            NSString * appName = [[notification objectForKey:@"body"] objectForKey:@"appName"];
-                            NSString * state = [[notification objectForKey:@"body"] objectForKey:@"state"];
-                            
-                            NSString * applicationNotification = [NSString stringWithFormat:@"app: %@, state = %@", appName, state];
-                            
-                            [self insertNewObject:applicationNotification];
-
+                    
+                    [self.manager UpdateNotification:Media_ApiKey thenCall:^(BOOL success, NSError *error) {
+                        if (success) {
+                            NSLog(@"Subscribe OK");
+                            [self.manager connectWebSocket];
+                            [self.manager whenANotificationOccurCall:^(NSDictionary *notification) {
+                                NSLog(@"Notifs :%@", [notification description]);
+                                NSString * applicationNotification;
+                                if ([[notification objectForKey:Body_KEY] count]==4) {
+                                    
+                                    NSString * service = [[notification objectForKey:Body_KEY] objectForKey:MediaService_KEY];
+                                    NSString * state = [[notification objectForKey:Body_KEY] objectForKey:MediaState_KEY];
+                                    NSString * title = [[notification objectForKey:Body_KEY] objectForKey:MediaTitle_KEY];
+                                    
+                                    applicationNotification = [NSString stringWithFormat:@"%@ : %@, title = %@", service, state,title];
+                                }
+                                else if ([[notification objectForKey:Body_KEY] count]==2) {
+                                    NSString * appName = [[notification objectForKey:Body_KEY] objectForKey:PackageName_KEY];
+                                    NSString * state = [[notification objectForKey:Body_KEY] objectForKey:State_KEY];
+                                    
+                                    applicationNotification = [NSString stringWithFormat:@"app: %@, state = %@", appName, state];
+                                }
+                                [self insertNewObject:applicationNotification];
+                            }];
+                        } else {
+                            NSLog(@"Subscribe KO");
+                        }
                     }];
                 } else {
-                    NSLog(@"%@", [error localizedDescription]);
-                    NSLog(@"Subscribe KO");
+                    NSLog(@"Subscribe KO %@", [error localizedDescription]);
                 }
             }];
         } else {
@@ -98,7 +111,7 @@ Bbox * bbox;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Cell_Identifier forIndexPath:indexPath];
     
     cell.textLabel.text = _objectsNotifs[indexPath.row];
     

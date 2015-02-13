@@ -10,6 +10,7 @@
 
 #import <BboxSecondScreen/BSSBboxSecondScreen.h>
 
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -19,5 +20,6 @@
 
 @property Bbox * bbox;
 @property BboxManager * bboxManager;
+@property ConnectManager * connectManager;
 
 @end

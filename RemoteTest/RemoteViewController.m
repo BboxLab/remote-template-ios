@@ -7,7 +7,7 @@
 //
 
 #import "RemoteViewController.h"
-
+#import "Constant.h"
 @interface RemoteViewController ()
 
 @property   NSMutableDictionary* dico;
@@ -34,50 +34,48 @@
     [super viewDidLoad];
     
     self.manager = self.bbox.remoteManager;
-    
     self.dico = [[NSMutableDictionary alloc] init];
+    [self.dico setValue:[Button_name objectAtIndex:0] forKey:self.one.currentTitle];//1
+    [self.dico setValue:[Button_name objectAtIndex:1] forKey:self.two.currentTitle];//2
+    [self.dico setValue:[Button_name objectAtIndex:2] forKey:self.three.currentTitle];//3
+    [self.dico setValue:[Button_name objectAtIndex:3] forKey:self.four.currentTitle];//4
+    [self.dico setValue:[Button_name objectAtIndex:4] forKey:self.five.currentTitle];//5
+    [self.dico setValue:[Button_name objectAtIndex:5]forKey:self.six.currentTitle];//6
+    [self.dico setValue:[Button_name objectAtIndex:6] forKey:self.seven.currentTitle];//7
+    [self.dico setValue:[Button_name objectAtIndex:7] forKey:self.eight.currentTitle];//8
+    [self.dico setValue:[Button_name objectAtIndex:8] forKey:self.nine.currentTitle];//9
+    [self.dico setValue:[Button_name objectAtIndex:9] forKey:self.zero.currentTitle];//0
+    [self.dico setValue:[Button_name objectAtIndex:10] forKey:self.up.currentTitle];//UP
+    [self.dico setValue:[Button_name objectAtIndex:11] forKey:self.down.currentTitle];//DOWN
+    [self.dico setValue:[Button_name objectAtIndex:12] forKey:self.left.currentTitle];//LEFT
+    [self.dico setValue:[Button_name objectAtIndex:13] forKey:self.right.currentTitle];//RIGHT
+    [self.dico setValue:[Button_name objectAtIndex:14] forKey:self.ok.currentTitle];//OK
+    [self.dico setValue:[Button_name objectAtIndex:15] forKey:self.back.currentTitle];//BACK
+    [self.dico setValue:[Button_name objectAtIndex:16] forKey:self.exit.currentTitle];//EXIT
     
-    [self.dico setValue:@"1" forKey:self.one.currentTitle];
-    [self.dico setValue:@"2" forKey:self.two.currentTitle];
-    [self.dico setValue:@"3" forKey:self.three.currentTitle];
-    [self.dico setValue:@"4" forKey:self.four.currentTitle];
-    [self.dico setValue:@"5" forKey:self.five.currentTitle];
-    [self.dico setValue:@"6" forKey:self.six.currentTitle];
-    [self.dico setValue:@"7" forKey:self.seven.currentTitle];
-    [self.dico setValue:@"8" forKey:self.eight.currentTitle];
-    [self.dico setValue:@"9" forKey:self.nine.currentTitle];
-    [self.dico setValue:@"0" forKey:self.zero.currentTitle];
-    [self.dico setValue:@"UP" forKey:self.up.currentTitle];
-    [self.dico setValue:@"DOWN" forKey:self.down.currentTitle];
-    [self.dico setValue:@"LEFT" forKey:self.left.currentTitle];
-    [self.dico setValue:@"RIGHT" forKey:self.right.currentTitle];
-    [self.dico setValue:@"OK" forKey:self.ok.currentTitle];
-    [self.dico setValue:@"BACK" forKey:self.back.currentTitle];
-    [self.dico setValue:@"EXIT" forKey:self.exit.currentTitle];
     
-    
-    [self.one addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.two addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.three addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.four addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.five addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.six addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.seven addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.eight addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.nine addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.zero addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.up addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.down addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.left addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.right addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.ok addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.back addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.exit addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.one addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//1
+    [self.two addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//2
+    [self.three addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//3
+    [self.four addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//4
+    [self.five addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//5
+    [self.six addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//6
+    [self.seven addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//7
+    [self.eight addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//8
+    [self.nine addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//9
+    [self.zero addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//0
+    [self.up addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//UP
+    [self.down addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//DOWN
+    [self.left addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//LEFT
+    [self.right addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//RIGHT
+    [self.ok addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//OK
+    [self.back addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//BACK
+    [self.exit addTarget:self action:@selector(pushedButton:) forControlEvents:UIControlEventTouchUpInside];//EXIT
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:@"bboxIp"]];
+    self.bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:BBoxIp]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,7 +90,7 @@
     
     self.manager = self.bbox.remoteManager;
     
-    [self.manager sendThisKey:[self.dico objectForKey:button.currentTitle] ofThatType:@"keypressed" andThenCall:^(BOOL success, NSError *error) {
+    [self.manager sendThisKey:[self.dico objectForKey:button.currentTitle] ofThatType:Keypressed_Type andThenCall:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"Success");
         } else {

@@ -39,7 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2CB3C7793052411694878414 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		1ABA8583ED2F52C956AD804A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		372028711A83CB430065E5A2 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		43B81C1FA01C194CB9112777 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D9346BFE19702BD70025DD02 /* RemoteTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9346C0119702BD70025DD02 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D9346C0319702BD70025DD02 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -95,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45FC4B0C1D18173E9EEB3A50 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1ABA8583ED2F52C956AD804A /* Pods.debug.xcconfig */,
+				43B81C1FA01C194CB9112777 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D9346BF519702BD70025DD02 = {
 			isa = PBXGroup;
 			children = (
@@ -102,7 +113,7 @@
 				D9346C2C19702BD80025DD02 /* RemoteTestTests */,
 				D9346C0019702BD70025DD02 /* Frameworks */,
 				D9346BFF19702BD70025DD02 /* Products */,
-				2CB3C7793052411694878414 /* Pods.xcconfig */,
+				45FC4B0C1D18173E9EEB3A50 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +141,7 @@
 		D9346C0719702BD70025DD02 /* RemoteTest */ = {
 			isa = PBXGroup;
 			children = (
+				372028711A83CB430065E5A2 /* Constant.h */,
 				D9346C3C19702DBB0025DD02 /* RemoteViewController.h */,
 				D9346C3D19702DBB0025DD02 /* RemoteViewController.m */,
 				D9346C3E19702DBB0025DD02 /* AppDelegate.h */,
@@ -285,7 +297,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		961B21ED011F49C8B736909C /* Check Pods Manifest.lock */ = {
@@ -432,7 +444,7 @@
 		};
 		D9346C3719702BD80025DD02 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB3C7793052411694878414 /* Pods.xcconfig */;
+			baseConfigurationReference = 1ABA8583ED2F52C956AD804A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -448,7 +460,7 @@
 		};
 		D9346C3819702BD80025DD02 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB3C7793052411694878414 /* Pods.xcconfig */;
+			baseConfigurationReference = 43B81C1FA01C194CB9112777 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

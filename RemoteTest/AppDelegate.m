@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 
+#import "Constant.h"
 @implementation AppDelegate
+@synthesize bbox;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -37,15 +39,38 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
     self.bboxManager = [BboxManager alloc];
     
     [self.bboxManager startLookingForBboxThenCall:^(Bbox *bbox) {
         self.bbox = bbox;
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:bbox.ip forKey:@"bboxIp"];
+        [userDefaults setObject:bbox.ip forKey:BBoxIp];
         [userDefaults synchronize];
     }];
+    
+   
+    self.bbox = [[Bbox alloc] initWithIp:[[NSUserDefaults standardUserDefaults] objectForKey:BBoxIp]];
+    
+    [self.bbox.connectManager getToken:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"Success getToken");
+            
+            [self.bbox.connectManager getSession:^(BOOL success, NSError *error) {
+                if (success) {
+                    NSLog(@"Success getSession");
+                } else {
+                    NSLog(@"It's a FAIL getSession %@",error);
+                }
+            }];
+            
+            
+        } else {
+            NSLog(@"It's a FAIL getToken %@",error);
+        }
+    }];
+    
+    
+  
     
 }
 
