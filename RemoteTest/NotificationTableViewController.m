@@ -88,10 +88,11 @@ Bbox * bbox;
         _objectsNotifs = [[NSMutableArray alloc] init];
     }
     
-    
-    [_objectsNotifs insertObject:sender atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    if (sender) {
+        [_objectsNotifs insertObject:sender atIndex:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 #pragma mark - Table view data source
